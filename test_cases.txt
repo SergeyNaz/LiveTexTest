@@ -1,0 +1,54 @@
+Test cases:
+    Room:
+        Precondition: room is created
+         1) Check if room is opened
+          Expected result: room is closed.
+         2) Try to check the emptiness of the room.
+          Expected result: cannot check because room is closed, RoomClosedException appears.
+         3) Try to open and close room.
+          Expected result: success.
+         4) Open room and check emptiness.
+          Expected result: room is empty.
+
+         // Add object
+         5) Try to add object to the closed room.
+          Expected result: cannot do this, RoomClosedException appears.
+         6) Add object to empty opened room.
+          Expected result: success. room contains object.
+         7) Add the same object to filled opened room.
+          Expected result: cannot do this, RoomAlreadyHasObjectException appears.
+         8) Add object to filled closed room.
+          Expected result: cannot do this, RoomClosedException appears.
+         9) Add different object to filled opened room.
+          Expected result: cannot do this, RoomAlreadyHasObjectException appears.
+
+         // Remove object
+         10) Remove object from the filled opened room.
+          Expected result: success, room doesn't contain object.
+         11) Remove object from empty closed room.
+          Expected result: cannot do this, RoomClosedException appears.
+         12) Remove object from filled closed room.
+          Expected result: cannot do this, RoomClosedException appears.
+         13) Remove object from empty opened room.
+          Expected result: cannot do this, EmptyRoomException appears.
+
+         // Get object
+         14) Get object from empty closed room.
+          Expected result: cannot do this, RoomClosedException appears.
+         15) Get object from empty opened room.
+          Expected result: cannot do this, EmptyRoomException appears.
+         16) Get object from filled closed room.
+          Expected result: cannot do this, RoomClosedException appears.
+         17) Get object from filled opened room.
+          Expected result: success, object is received.
+
+         // End to end
+         18) Remove one and add other object.
+          Expected result: success, room contains other object.
+
+    EventListener:
+        Precondition: room is created
+         1) Add object to the room.
+          Expected result: object is added, stdout is empty.
+         2) Subscribe and add object to room.
+          Expected result: object is added, "Object was added to the room" massage at the stdout.
